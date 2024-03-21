@@ -12,17 +12,7 @@ public class ComplexCommand implements DriverCommand{
     }
 
 
-    public void addOpearteTo(OperateToCommand com)
-    {
-        commands.add(com);
-    }
-
-    public void addSetPosition(OperateToCommand com)
-    {
-        commands.add(com);
-    }
-
-    public void addComplexCommand(ComplexCommand com)
+    public void addCommand(DriverCommand com)
     {
         commands.add(com);
     }
