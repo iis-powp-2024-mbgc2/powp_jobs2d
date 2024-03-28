@@ -24,8 +24,8 @@ public class SelectTestFigureOptionListener implements ActionListener {
 		public final static int FIGURE_JOE_1 = 1;
 		public final static int FIGURE_JOE_2 = 2;
 		public final static int SQUARE = 3;
-		public final static int TRIANGLE = 4;
-		public final static int CIRCLE = 5;
+		public final static int CIRCLE = 4;
+		public final static int TRIANGLE = 5;
 		private final int START_X = 0;
 		private final int START_Y = 0;
 
@@ -47,6 +47,13 @@ public class SelectTestFigureOptionListener implements ActionListener {
 		{
 			Factories factory = new Factories();
 			ComplexCommand command = factory.SquareFactory(driverManager.getCurrentDriver(), START_X, START_Y, DEFAULT_UNIT);
+			command.execute();
+		}
+
+		if(figure == CIRCLE)
+		{
+			Factories factory = new Factories();
+			ComplexCommand command = factory.CircleFactory(driverManager.getCurrentDriver(), START_X, START_Y, DEFAULT_UNIT);
 			command.execute();
 		}
 

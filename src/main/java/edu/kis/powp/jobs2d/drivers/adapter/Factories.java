@@ -16,4 +16,25 @@ public class Factories
         return command;
     }
 
+    public ComplexCommand CircleFactory(Job2dDriver driver, int x, int y, int radius)
+    {
+        ComplexCommand command = new ComplexCommand();
+        command.addCommand(new SetPositionCommand( driver,x - radius, y));
+
+        for(int i = radius * (-1); i <= radius; i++)
+        {
+            command.addCommand(new OperateToCommand(driver, x + i, (int) (y + Math.sqrt(radius * radius - i * i))));
+        }
+
+        command.addCommand(new SetPositionCommand(driver, x - radius, y));
+
+        for(int i = radius * (-1); i <= radius; i++)
+        {
+            command.addCommand(new OperateToCommand(driver, x + i, (int) (y - Math.sqrt(radius * radius - i * i))));
+        }
+
+
+        return command;
+    }
+
 }
