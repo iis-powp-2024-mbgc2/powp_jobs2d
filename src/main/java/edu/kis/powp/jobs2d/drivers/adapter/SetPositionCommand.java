@@ -13,6 +13,9 @@ public class SetPositionCommand implements DriverCommand
         this.x = x_1;
         this.y = y_2;
     }
+
+
+
     @Override
     public void execute()
     {
