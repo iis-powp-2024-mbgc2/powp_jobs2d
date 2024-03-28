@@ -57,5 +57,12 @@ public class SelectTestFigureOptionListener implements ActionListener {
 			command.execute();
 		}
 
+		if(figure == TRIANGLE)
+		{
+			Factories factory = new Factories();
+			ComplexCommand command = factory.TriangleFactory(driverManager.getCurrentDriver(), START_X, START_Y, DEFAULT_UNIT);
+			command.execute();
+		}
+
 	}
 }
