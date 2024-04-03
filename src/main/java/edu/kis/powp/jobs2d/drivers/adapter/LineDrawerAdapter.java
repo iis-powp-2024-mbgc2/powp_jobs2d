@@ -9,11 +9,15 @@ import edu.kis.powp.jobs2d.features.DrawerFeature;
 /**
  * Driver adapter to drawer using SpecialLine.
  */
-public class LineDrawerAdapter extends DrawPanelController implements Job2dDriver {
+public class LineDrawerAdapter implements Job2dDriver {
     private int startX = 0, startY = 0;
+    private final DrawPanelController drawPanelController;
+    private final ILine line;
 
-    public LineDrawerAdapter() {
+    public LineDrawerAdapter(ILine line) {
         super();
+        drawPanelController = DrawerFeature.getDrawerController();
+        this.line = line;
     }
 
     @Override
@@ -24,11 +28,10 @@ public class LineDrawerAdapter extends DrawPanelController implements Job2dDrive
 
     @Override
     public void operateTo(int x, int y) {
-        ILine line = LineFactory.getSpecialLine();
         line.setStartCoordinates(this.startX, this.startY);
         line.setEndCoordinates(x, y);
         setPosition(x, y);
-        DrawerFeature.getDrawerController().drawLine(line);
+        drawPanelController.drawLine(line);
     }
 
     @Override
