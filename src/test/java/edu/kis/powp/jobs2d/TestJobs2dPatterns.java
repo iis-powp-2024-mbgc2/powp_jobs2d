@@ -9,12 +9,16 @@ import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.command.TestCommand;
+import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawerAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
+import edu.kis.powp.legacy.drawer.TestDrawer;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -25,14 +29,21 @@ public class TestJobs2dPatterns {
 	 * @param application Application context.
 	 */
 	private static void setupPresetTests(Application application) {
-		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager());
-
-		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
-		application.addTest("Figure Joe 2", selectTestFigureOptionListener);
-		application.addTest("Command test", selectTestFigureOptionListener);
-		application.addTest("Rectangle factory", selectTestFigureOptionListener);
-		application.addTest("Triangle factory", selectTestFigureOptionListener);
+		application.addTest("Figure Joe 1", new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), FiguresJoe::figureScript1
+		));
+		application.addTest("Figure Joe 2", new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), FiguresJoe::figureScript2
+		));
+		application.addTest("Command test", new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), TestCommand::customTest
+		));
+		application.addTest("Rectangle factory", new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), TestCommand::rectangleTest
+		));
+		application.addTest("Triangle factory", new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), TestCommand::triangleTest
+		));
 	}
 
 	/**
