@@ -9,8 +9,8 @@ import javax.swing.*;
 
 public class LineDrawerAdapter extends DrawPanelController implements Job2dDriver{
     private int startX = 0, startY = 0;
-    private DrawPanelController drawer;
-    private int lineType;
+    private final DrawPanelController drawer;
+    private final int lineType;
 
     public LineDrawerAdapter(DrawPanelController drawer, int lineType) {
         super();
