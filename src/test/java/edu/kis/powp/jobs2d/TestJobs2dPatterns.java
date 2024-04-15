@@ -1,10 +1,5 @@
 package edu.kis.powp.jobs2d;
 
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
@@ -16,17 +11,25 @@ import edu.kis.powp.jobs2d.events.TestFigure;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import edu.kis.powp.jobs2d.events.TestFigure;
+
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 	private static void setupPresetTests(Application application) {
-		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), TestFigure.FIGURE_JOE_1);
-		SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), TestFigure.FIGURE_JOE_2);
-
-		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
-		application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
+		application.addTest("Figure Joe 1", new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), TestFigure.FIGURE_JOE_1));
+		application.addTest("Figure Joe 2", new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), TestFigure.FIGURE_JOE_2));
+		application.addTest("Rectangle", new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), TestFigure.RECTANGLE));
+		application.addTest("Circle", new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), TestFigure.CIRCLE));
 	}
 
 	private static void setupDrivers(Application application) {
