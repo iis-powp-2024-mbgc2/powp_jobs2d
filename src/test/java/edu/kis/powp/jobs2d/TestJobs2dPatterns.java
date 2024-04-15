@@ -7,7 +7,8 @@ import edu.kis.powp.jobs2d.drivers.adapter.DriverDrawer;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
-import edu.kis.powp.jobs2d.features.DrawerAdapter;
+import edu.kis.powp.jobs2d.events.TestFigure;
+import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
 
 import java.awt.*;
@@ -36,13 +37,13 @@ public class TestJobs2dPatterns {
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
-		Job2dDriver testDriver = new DriverDrawer(DrawerAdapter.getDrawerController());
+		Job2dDriver testDriver = new DriverDrawer(DrawerFeature.getDrawerController());
 		DriverFeature.addDriver("Basic Simulator", testDriver);
 
-		Job2dDriver testDriver2 = new LineDrawerAdapter(DrawerAdapter.getDrawerController(), 1);
+		Job2dDriver testDriver2 = new LineDrawerAdapter(DrawerFeature.getDrawerController(), 1);
 		DriverFeature.addDriver("Dotted Line Simulator", testDriver2);
 
-		Job2dDriver testDriver3 = new LineDrawerAdapter(DrawerAdapter.getDrawerController(), 2);
+		Job2dDriver testDriver3 = new LineDrawerAdapter(DrawerFeature.getDrawerController(), 2);
 		DriverFeature.addDriver("Special Line Simulator", testDriver3);
 
 		DriverFeature.updateDriverInfo();
@@ -72,7 +73,7 @@ public class TestJobs2dPatterns {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				Application app = new Application("2d jobs Visio");
-				DrawerAdapter.setupDrawerPlugin(app);
+				DrawerFeature.setupDrawerPlugin(app);
 				DriverFeature.setupDriverPlugin(app);
 				setupDrivers(app);
 				setupPresetTests(app);
