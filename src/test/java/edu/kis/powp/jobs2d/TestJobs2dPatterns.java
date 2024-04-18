@@ -40,6 +40,17 @@ public class TestJobs2dPatterns {
 
         application.addTest("Figures Jane", selectTestFigureOptionListenerJane);
 
+		SelectTestFigureOptionListener selectTestFigureOptionListenerRectangle = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager() , "Rectangle");
+
+		application.addTest("Rectangle", selectTestFigureOptionListenerRectangle );
+
+		SelectTestFigureOptionListener selectTestFigureOptionListenerTriangle = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager() , "Triangle");
+
+		application.addTest("Triangle", selectTestFigureOptionListenerTriangle );
+
+
 	}
 
 	/**

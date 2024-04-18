@@ -1,5 +1,7 @@
 package edu.kis.powp.jobs2d.events;
 
+import edu.kis.powp.jobs2d.command.ComplexCommand;
+import edu.kis.powp.jobs2d.command.ShapeFactory;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.drivers.adapter.AbstractDriverAdapter;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJane;
@@ -13,6 +15,10 @@ public class SelectTestFigureOptionListener implements ActionListener {
 	private static final String FIGURE_JOE_1 = "FiguresJoe1";
 	private static final String FIGURE_JOE_2 = "FiguresJoe2";
 	private static final String FIGURES_JANE_1 = "FiguresJane1";
+	private static final String Rectangle = "Rectangle";
+
+	private static final String Triangle = "Triangle";
+
 
 	private final DriverManager driverManager;
 	private final String figuresName;
@@ -37,6 +43,14 @@ public class SelectTestFigureOptionListener implements ActionListener {
 
 				FiguresJane.figureScript( new AbstractDriverAdapter(driverManager) );
 
+				break;
+			case Rectangle:
+				ComplexCommand commandRectangle = ShapeFactory.createRectangle(driverManager.getCurrentDriver(),-100,-100 ,200,100);
+				commandRectangle.execute();
+
+			case Triangle:
+				ComplexCommand commandTriangle = ShapeFactory.createTriangle(driverManager.getCurrentDriver(),-100,-100 ,200);
+				commandTriangle.execute();
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown figure name: " + figuresName);

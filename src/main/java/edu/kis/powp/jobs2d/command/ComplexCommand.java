@@ -20,6 +20,4 @@ public class ComplexCommand implements DriverCommand{
 			command.execute();
 		}
 	}
-
-
 }
