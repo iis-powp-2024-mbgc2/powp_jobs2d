@@ -12,12 +12,12 @@ import java.awt.event.ActionListener;
 
 public class SelectTestFigureOptionListener implements ActionListener {
 
-	private static final String FIGURE_JOE_1 = "FiguresJoe1";
-	private static final String FIGURE_JOE_2 = "FiguresJoe2";
-	private static final String FIGURES_JANE_1 = "FiguresJane1";
-	private static final String Rectangle = "Rectangle";
+	public static final String FIGURE_JOE_1 = "FiguresJoe1";
+	public static final String FIGURE_JOE_2 = "FiguresJoe2";
+	public static final String FIGURES_JANE_1 = "FiguresJane1";
+	public static final String RECTANGLE = "Rectangle";
 
-	private static final String Triangle = "Triangle";
+	public static final String TRIANGLE = "Triangle";
 
 
 	private final DriverManager driverManager;
@@ -44,11 +44,11 @@ public class SelectTestFigureOptionListener implements ActionListener {
 				FiguresJane.figureScript( new AbstractDriverAdapter(driverManager) );
 
 				break;
-			case Rectangle:
+			case RECTANGLE:
 				ComplexCommand commandRectangle = ShapeFactory.createRectangle(driverManager.getCurrentDriver(),-100,-100 ,200,100);
 				commandRectangle.execute();
 
-			case Triangle:
+			case TRIANGLE:
 				ComplexCommand commandTriangle = ShapeFactory.createTriangle(driverManager.getCurrentDriver(),-100,-100 ,200);
 				commandTriangle.execute();
 				break;

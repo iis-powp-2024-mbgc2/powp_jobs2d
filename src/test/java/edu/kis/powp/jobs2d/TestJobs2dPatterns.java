@@ -25,28 +25,29 @@ public class TestJobs2dPatterns {
 	 * @param application Application context.
 	 */
 	private static void setupPresetTests(Application application) {
+
 		SelectTestFigureOptionListener selectTestFigureOptionListenerJoe1 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager() , "FiguresJoe1");
+				DriverFeature.getDriverManager() , SelectTestFigureOptionListener.FIGURES_JANE_1);
 
 		application.addTest("Figure Joe 1", selectTestFigureOptionListenerJoe1);
 
         SelectTestFigureOptionListener selectTestFigureOptionListenerJoe2 = new SelectTestFigureOptionListener(
-                DriverFeature.getDriverManager() , "FiguresJoe2");
+                DriverFeature.getDriverManager() , SelectTestFigureOptionListener.FIGURE_JOE_2);
 
         application.addTest("Figure Joe 2", selectTestFigureOptionListenerJoe2);
 
 		SelectTestFigureOptionListener selectTestFigureOptionListenerJane = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager() , "FiguresJane1");
+				DriverFeature.getDriverManager() , SelectTestFigureOptionListener.FIGURES_JANE_1);
 
         application.addTest("Figures Jane", selectTestFigureOptionListenerJane);
 
 		SelectTestFigureOptionListener selectTestFigureOptionListenerRectangle = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager() , "Rectangle");
+				DriverFeature.getDriverManager() , SelectTestFigureOptionListener.RECTANGLE);
 
 		application.addTest("Rectangle", selectTestFigureOptionListenerRectangle );
 
 		SelectTestFigureOptionListener selectTestFigureOptionListenerTriangle = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager() , "Triangle");
+				DriverFeature.getDriverManager() , SelectTestFigureOptionListener.TRIANGLE);
 
 		application.addTest("Triangle", selectTestFigureOptionListenerTriangle );
 
@@ -66,11 +67,11 @@ public class TestJobs2dPatterns {
 		Job2dDriver testDriver = new BasicDriverAdapter (DrawerFeature.getDrawerController());
 		DriverFeature.addDriver("Basic Line", testDriver);
 
-        Job2dDriver testDriver2 = new LineDrawerAdapter( DrawerFeature.getDrawerController(), LineFactory.getSpecialLine());
-        DriverFeature.addDriver("Special Line", testDriver2);
+		Job2dDriver testDriver2 = new LineDrawerAdapter( DrawerFeature.getDrawerController(), LineFactory.getSpecialLine());
+		DriverFeature.addDriver("Special Line", testDriver2);
 
-        Job2dDriver testDriver3 = new LineDrawerAdapter( DrawerFeature.getDrawerController(), LineFactory.getDottedLine());
-        DriverFeature.addDriver("Dot Line", testDriver3);
+		Job2dDriver testDriver3 = new LineDrawerAdapter( DrawerFeature.getDrawerController(), LineFactory.getDottedLine());
+		DriverFeature.addDriver("Dot Line", testDriver3);
 
 		DriverFeature.updateDriverInfo();
 	}
