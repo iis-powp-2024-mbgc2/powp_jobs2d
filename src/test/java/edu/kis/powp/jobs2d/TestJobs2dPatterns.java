@@ -4,12 +4,14 @@ import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
+import edu.kis.powp.jobs2d.FirgureJoeWithMorePatterns.FiguresJoeComplexCommandGenerator;
 import edu.kis.powp.jobs2d.drivers.adapter.BasicDriverAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,6 +27,13 @@ public class TestJobs2dPatterns {
 	 * @param application Application context.
 	 */
 	private static void setupPresetTests(Application application) {
+
+
+		FiguresJoeComplexCommandGenerator complexCommandGenerator = new FiguresJoeComplexCommandGenerator();
+
+		complexCommandGenerator.addFigureGenerator(new FiguresJoeComplexCommandGenerator.FigureGeneratorAdapter(new FiguresJoe() ));
+
+		application.addTest("Figures Joe with ComplexCommandGenerator", e -> complexCommandGenerator.executeAllFigures(DriverFeature.getDriverManager().getCurrentDriver()));
 
 		SelectTestFigureOptionListener selectTestFigureOptionListenerJoe1 = new SelectTestFigureOptionListener(
 				DriverFeature.getDriverManager() , SelectTestFigureOptionListener.FIGURES_JANE_1);
