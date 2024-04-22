@@ -16,8 +16,28 @@ import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
 
+
+
+
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+	public enum TestFigureOption {
+		OPTION_1(1),
+		OPTION_2(2),
+		OPTION_3(3),
+		OPTION_4(4);
+
+		private final int value;
+
+		TestFigureOption(int value) {
+			this.value = value;
+		}
+
+		public int getValue() {
+			return value;
+		}
+	}
 
 	/**
 	 * Setup test concerning preset figures in context.
@@ -26,15 +46,16 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener1 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 1);
+				DriverFeature.getDriverManager(), TestFigureOption.OPTION_1.getValue());
 
 		SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 2);
+				DriverFeature.getDriverManager(), TestFigureOption.OPTION_2.getValue());
+
 		SelectTestFigureOptionListener selectTestFigureOptionListener3 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 3);
+				DriverFeature.getDriverManager(), TestFigureOption.OPTION_3.getValue());
 
 		SelectTestFigureOptionListener selectTestFigureOptionListener4 = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 4);
+				DriverFeature.getDriverManager(), TestFigureOption.OPTION_4.getValue());
 
 		application.addTest("Figure_Joe_1", selectTestFigureOptionListener1);
 		application.addTest("Figure_Joe_2", selectTestFigureOptionListener2);
