@@ -12,9 +12,9 @@ public class SelectTestFigureOptionListener implements ActionListener {
 
 	private DriverManager driverManager;
 
-	private actions commandNumber;
+	private Actions commandNumber;
 
-	public SelectTestFigureOptionListener(DriverManager driverManager, actions commandNumber) {
+	public SelectTestFigureOptionListener(DriverManager driverManager, Actions commandNumber) {
 		this.driverManager = driverManager;
 		this.commandNumber = commandNumber;
 	}
@@ -22,17 +22,17 @@ public class SelectTestFigureOptionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (commandNumber){
-			case figure1:
+			case FIGURE_1:
 				FiguresJoe.figureScript1(driverManager.getCurrentDriver());
 				break;
-			case figure2:
+			case FIGURE_2:
 				FiguresJoe.figureScript2(driverManager.getCurrentDriver());
 				break;
-			case square:
+			case ACTIONS:
 				DriverCommand command = CommandFactory.makeSquare(driverManager.getCurrentDriver(), -50, -50, 200);
 				command.execute();
 				break;
-			case triangle:
+			case TRIANGLE:
 				CommandFactory.makeTriangle(driverManager.getCurrentDriver(),
 						-50, -50, 100, 69, 40, 50).execute();
 				break;
