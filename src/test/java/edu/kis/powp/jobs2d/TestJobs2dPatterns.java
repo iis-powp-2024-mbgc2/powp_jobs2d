@@ -17,6 +17,10 @@ import edu.kis.powp.jobs2d.features.DriverFeature;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private static final int FIRST_FIGURE = 1;
+	private static final int SECOND_FIGURE = 2;
+	private static final int SQUARE = 3;
+	private static final int RECTANGLE = 4;
 
 	/**
 	 * Setup test concerning preset figures in context.
@@ -25,19 +29,19 @@ public class TestJobs2dPatterns {
 	 */
 	private static void setupPresetTests(Application application) {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 1
+				DriverFeature.getDriverManager(), FIRST_FIGURE
 		);
 
 		SelectTestFigureOptionListener selectTestSecondFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 2
+				DriverFeature.getDriverManager(), SECOND_FIGURE
 		);
 
 		SelectTestFigureOptionListener selectTestSquareFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 3
+				DriverFeature.getDriverManager(), SQUARE
 		);
 
 		SelectTestFigureOptionListener selectTestRectangleFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager(), 4
+				DriverFeature.getDriverManager(), RECTANGLE
 		);
 
 
