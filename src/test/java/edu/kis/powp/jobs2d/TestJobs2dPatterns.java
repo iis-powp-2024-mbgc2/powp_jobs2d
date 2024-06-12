@@ -8,9 +8,11 @@ import java.util.logging.Logger;
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
-import edu.kis.powp.jobs2d.drivers.adapter.MyAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.DrawPanelAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
+import edu.kis.powp.jobs2d.events.Actions;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
 
@@ -19,19 +21,28 @@ public class TestJobs2dPatterns {
 
 	/**
 	 * Setup test concerning preset figures in context.
-	 * 
+	 *
 	 * @param application Application context.
 	 */
 	private static void setupPresetTests(Application application) {
-		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
-				DriverFeature.getDriverManager());
+		SelectTestFigureOptionListener test1 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), Actions.FIGURE_1);
+		SelectTestFigureOptionListener test2 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), Actions.FIGURE_2);
+		SelectTestFigureOptionListener test3 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), Actions.ACTIONS);
+		SelectTestFigureOptionListener test4 = new SelectTestFigureOptionListener(
+				DriverFeature.getDriverManager(), Actions.TRIANGLE);
 
-		application.addTest("Figure Joe 1", selectTestFigureOptionListener);
+		application.addTest("Figure Joe 1", test1);
+		application.addTest("Figure 2", test2);
+		application.addTest("Square", test3);
+		application.addTest("Triangle", test4);
 	}
 
 	/**
 	 * Setup driver manager, and set default driver for application.
-	 * 
+	 *
 	 * @param application Application context.
 	 */
 	private static void setupDrivers(Application application) {
@@ -39,15 +50,21 @@ public class TestJobs2dPatterns {
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
-		Job2dDriver testDriver = new MyAdapter();
+		Job2dDriver testDriver = new DrawPanelAdapter(DrawerFeature.getDrawerController());
 		DriverFeature.addDriver("Buggy Simulator", testDriver);
+
+		Job2dDriver lineSpecial = new LineDrawerAdapter(0, DrawerFeature.getDrawerController());
+		DriverFeature.addDriver("Special line", lineSpecial);
+
+		Job2dDriver lineDotted = new LineDrawerAdapter(1, DrawerFeature.getDrawerController());
+		DriverFeature.addDriver("Dotted Line", lineDotted);
 
 		DriverFeature.updateDriverInfo();
 	}
 
 	/**
 	 * Auxiliary routines to enable using Buggy Simulator.
-	 * 
+	 *
 	 * @param application Application context.
 	 */
 	private static void setupDefaultDrawerVisibilityManagement(Application application) {
@@ -59,7 +76,7 @@ public class TestJobs2dPatterns {
 
 	/**
 	 * Setup menu for adjusting logging settings.
-	 * 
+	 *
 	 * @param application Application context.
 	 */
 	private static void setupLogger(Application application) {
