@@ -8,7 +8,8 @@ import java.util.logging.Logger;
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
 import edu.kis.powp.appbase.Application;
-import edu.kis.powp.jobs2d.drivers.adapter.BaseDrawerAdapter;
+import edu.kis.powp.jobs2d.drivers.LineType;
+import edu.kis.powp.jobs2d.drivers.adapter.BaseDriverDrawerAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
 import edu.kis.powp.jobs2d.events.SelectChangeVisibleOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
@@ -41,13 +42,13 @@ public class TestJobs2dPatterns {
         DriverFeature.addDriver("Logger Driver", loggerDriver);
         DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
-        Job2dDriver basicLineDriver = new BaseDrawerAdapter();
+        Job2dDriver basicLineDriver = new BaseDriverDrawerAdapter();
         DriverFeature.addDriver("Basic Line Driver", basicLineDriver);
 
-        Job2dDriver specialLineDriver = new LineDrawerAdapter(1);
+        Job2dDriver specialLineDriver = new LineDrawerAdapter(LineType.SPECIAL);
         DriverFeature.addDriver("Special Line Driver", specialLineDriver);
 
-        Job2dDriver dottedLineDriver = new LineDrawerAdapter(2);
+        Job2dDriver dottedLineDriver = new LineDrawerAdapter(LineType.DOTTED);
         DriverFeature.addDriver("Dotted Line Driver", dottedLineDriver);
 
         DriverFeature.updateDriverInfo();
@@ -60,8 +61,7 @@ public class TestJobs2dPatterns {
      */
     private static void setupDefaultDrawerVisibilityManagement(Application application) {
         DefaultDrawerFrame defaultDrawerWindow = DefaultDrawerFrame.getDefaultDrawerFrame();
-        application.addComponentMenuElementWithCheckBox(DrawPanelController.class, "Default Drawer Visibility",
-                new SelectChangeVisibleOptionListener(defaultDrawerWindow), true);
+        application.addComponentMenuElementWithCheckBox(DrawPanelController.class, "Default Drawer Visibility", new SelectChangeVisibleOptionListener(defaultDrawerWindow), true);
         defaultDrawerWindow.setVisible(true);
     }
 
@@ -72,14 +72,11 @@ public class TestJobs2dPatterns {
      */
     private static void setupLogger(Application application) {
         application.addComponentMenu(Logger.class, "Logger", 0);
-        application.addComponentMenuElement(Logger.class, "Clear log",
-                (ActionEvent e) -> application.flushLoggerOutput());
+        application.addComponentMenuElement(Logger.class, "Clear log", (ActionEvent e) -> application.flushLoggerOutput());
         application.addComponentMenuElement(Logger.class, "Fine level", (ActionEvent e) -> logger.setLevel(Level.FINE));
         application.addComponentMenuElement(Logger.class, "Info level", (ActionEvent e) -> logger.setLevel(Level.INFO));
-        application.addComponentMenuElement(Logger.class, "Warning level",
-                (ActionEvent e) -> logger.setLevel(Level.WARNING));
-        application.addComponentMenuElement(Logger.class, "Severe level",
-                (ActionEvent e) -> logger.setLevel(Level.SEVERE));
+        application.addComponentMenuElement(Logger.class, "Warning level", (ActionEvent e) -> logger.setLevel(Level.WARNING));
+        application.addComponentMenuElement(Logger.class, "Severe level", (ActionEvent e) -> logger.setLevel(Level.SEVERE));
         application.addComponentMenuElement(Logger.class, "OFF logging", (ActionEvent e) -> logger.setLevel(Level.OFF));
     }
 
@@ -91,12 +88,10 @@ public class TestJobs2dPatterns {
             public void run() {
                 Application app = new Application("2d jobs Visio");
                 DrawerFeature.setupDrawerPlugin(app);
-
                 DriverFeature.setupDriverPlugin(app);
                 setupDrivers(app);
                 setupPresetTests(app);
                 setupLogger(app);
-
                 app.setVisibility(true);
             }
         });
