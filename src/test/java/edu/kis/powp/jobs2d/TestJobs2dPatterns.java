@@ -24,11 +24,11 @@ public class TestJobs2dPatterns {
      * @param application Application context.
      */
     private static void setupPresetTests(Application application) {
-        SelectTestFigureOptionListener selectTestFigureOptionListener1 = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), 1);
-        SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), 2);
-        SelectTestFigureOptionListener selectTestFigureOptionListener3 = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), 3);
-        SelectTestFigureOptionListener selectTestFigureOptionListener4 = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), 4);
-        SelectTestFigureOptionListener selectTestFigureOptionListener5 = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), 5);
+        SelectTestFigureOptionListener selectTestFigureOptionListener1 = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), TestType.FIGURE_SCRIPT_1);
+        SelectTestFigureOptionListener selectTestFigureOptionListener2 = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), TestType.FIGURE_SCRIPT_2);
+        SelectTestFigureOptionListener selectTestFigureOptionListener3 = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), TestType.SQUARE);
+        SelectTestFigureOptionListener selectTestFigureOptionListener4 = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), TestType.RECTANGLE);
+        SelectTestFigureOptionListener selectTestFigureOptionListener5 = new SelectTestFigureOptionListener(DriverFeature.getDriverManager(), TestType.TRIANGLE);
 
         application.addTest("Figure Joe 1", selectTestFigureOptionListener1);
         application.addTest("Figure Joe 2", selectTestFigureOptionListener2);
@@ -66,8 +66,7 @@ public class TestJobs2dPatterns {
      */
     private static void setupDefaultDrawerVisibilityManagement(Application application) {
         DefaultDrawerFrame defaultDrawerWindow = DefaultDrawerFrame.getDefaultDrawerFrame();
-        application.addComponentMenuElementWithCheckBox(DrawPanelController.class, "Default Drawer Visibility",
-                new SelectChangeVisibleOptionListener(defaultDrawerWindow), true);
+        application.addComponentMenuElementWithCheckBox(DrawPanelController.class, "Default Drawer Visibility", new SelectChangeVisibleOptionListener(defaultDrawerWindow), true);
         defaultDrawerWindow.setVisible(true);
     }
 
@@ -78,14 +77,11 @@ public class TestJobs2dPatterns {
      */
     private static void setupLogger(Application application) {
         application.addComponentMenu(Logger.class, "Logger", 0);
-        application.addComponentMenuElement(Logger.class, "Clear log",
-                (ActionEvent e) -> application.flushLoggerOutput());
+        application.addComponentMenuElement(Logger.class, "Clear log", (ActionEvent e) -> application.flushLoggerOutput());
         application.addComponentMenuElement(Logger.class, "Fine level", (ActionEvent e) -> logger.setLevel(Level.FINE));
         application.addComponentMenuElement(Logger.class, "Info level", (ActionEvent e) -> logger.setLevel(Level.INFO));
-        application.addComponentMenuElement(Logger.class, "Warning level",
-                (ActionEvent e) -> logger.setLevel(Level.WARNING));
-        application.addComponentMenuElement(Logger.class, "Severe level",
-                (ActionEvent e) -> logger.setLevel(Level.SEVERE));
+        application.addComponentMenuElement(Logger.class, "Warning level", (ActionEvent e) -> logger.setLevel(Level.WARNING));
+        application.addComponentMenuElement(Logger.class, "Severe level", (ActionEvent e) -> logger.setLevel(Level.SEVERE));
         application.addComponentMenuElement(Logger.class, "OFF logging", (ActionEvent e) -> logger.setLevel(Level.OFF));
     }
 
