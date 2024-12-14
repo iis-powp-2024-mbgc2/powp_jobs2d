@@ -4,6 +4,7 @@ import edu.kis.legacy.drawer.shape.ILine;
 import edu.kis.legacy.drawer.shape.line.SpecialLine;
 import edu.kis.powp.jobs2d.Job2dDriver;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
+import edu.kis.powp.jobs2d.features.LineFeature;
 
 public class LineDrawerAdapter implements Job2dDriver {
 
@@ -18,7 +19,7 @@ public class LineDrawerAdapter implements Job2dDriver {
 
     @Override
     public void operateTo(int x, int y) {
-        ILine line = new SpecialLine();
+        ILine line = LineFeature.getLine();
         line.setStartCoordinates(this.startX, this.startY);
         line.setEndCoordinates(x, y);
         this.setPosition(x, y);

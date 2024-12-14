@@ -12,6 +12,7 @@ import edu.kis.powp.jobs2d.events.SelectTestFigureJoe1OptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureJoe2OptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+import edu.kis.powp.jobs2d.features.LineFeature;
 
 public class TestJobs2dPatterns {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -81,6 +82,7 @@ public class TestJobs2dPatterns {
 				setupDrivers(app);
 				setupPresetTests(app);
 				setupLogger(app);
+				LineFeature.setupAdvancedLinePlugin(app);
 
 				app.setVisibility(true);
 			}
