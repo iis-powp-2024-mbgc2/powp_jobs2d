@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.adapter.BasicLineDrawerAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerAdapter;
+import edu.kis.powp.jobs2d.events.SelectTestFigureJaneOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureJoe1OptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureJoe2OptionListener;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
@@ -27,9 +28,12 @@ public class TestJobs2dPatterns {
 				DriverFeature.getDriverManager());
 		SelectTestFigureJoe2OptionListener selectTestFigureJoe2OptionListener = new SelectTestFigureJoe2OptionListener(
 				DriverFeature.getDriverManager());
+		SelectTestFigureJaneOptionListener selectTestFigureJaneOptionListener = new SelectTestFigureJaneOptionListener(
+				DriverFeature.getDriverManager());
 
 		application.addTest("Figure Joe 1", selectTestFigureJoe1OptionListener);
 		application.addTest("Figure Joe 2", selectTestFigureJoe2OptionListener);
+		application.addTest("Figure Jane", selectTestFigureJaneOptionListener);
 	}
 
 	/**
