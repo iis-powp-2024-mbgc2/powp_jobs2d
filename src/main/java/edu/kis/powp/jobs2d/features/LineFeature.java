@@ -35,6 +35,9 @@ public class LineFeature {
 
     private static void thicknessChangeHandler(ActionEvent actionEvent) {
         String value = JOptionPane.showInputDialog(null, "Please provide new thickness value", thickness);
+        if (value == null) {
+            return;
+        }
         try {
             int number = Integer.parseInt(value);
             if (number < 0) {
